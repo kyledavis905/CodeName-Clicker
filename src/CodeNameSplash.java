@@ -6,6 +6,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import java.awt.Color;
 import java.awt.Font;
@@ -67,19 +68,26 @@ public class CodeNameSplash extends JFrame {
 				Gui.setVisible(true);
 			}
 		});
+		
+		ImageIcon CursorIcon = new ImageIcon("Images/stealth.png");
+		JLabel lblleftimage = new JLabel(CursorIcon);
+		
+		
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
-					.addContainerGap(108, Short.MAX_VALUE)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
+					.addContainerGap()
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+						.addGroup(gl_contentPane.createSequentialGroup()
 							.addComponent(lblCodenameClicker)
 							.addGap(98))
-						.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
+						.addGroup(gl_contentPane.createSequentialGroup()
 							.addComponent(lblDeveopersGabrielGebril)
 							.addContainerGap())
-						.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addComponent(lblleftimage)
+							.addPreferredGap(ComponentPlacement.RELATED, 85, Short.MAX_VALUE)
 							.addComponent(btnStartButton, GroupLayout.PREFERRED_SIZE, 153, GroupLayout.PREFERRED_SIZE)
 							.addGap(130))))
 		);
@@ -89,9 +97,12 @@ public class CodeNameSplash extends JFrame {
 					.addContainerGap()
 					.addComponent(lblCodenameClicker)
 					.addGap(67)
-					.addComponent(btnStartButton, GroupLayout.PREFERRED_SIZE, 46, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
-					.addComponent(lblDeveopersGabrielGebril)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addComponent(lblleftimage)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addComponent(btnStartButton, GroupLayout.PREFERRED_SIZE, 46, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
+							.addComponent(lblDeveopersGabrielGebril)))
 					.addContainerGap())
 		);
 		contentPane.setLayout(gl_contentPane);
