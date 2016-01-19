@@ -17,7 +17,7 @@ public class CodeNameGui extends JFrame {
 			public void run() {
 				try {
 					CodeNameGui frame = new CodeNameGui();
-					frame.setVisible(false);
+					frame.setVisible(true);
 					frame.setLocationRelativeTo(null);  
 				} catch (Exception e) {
 					e.printStackTrace();
