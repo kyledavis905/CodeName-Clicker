@@ -9,8 +9,12 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Window;
+
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class CodeNameSplash extends JFrame {
 
@@ -55,6 +59,14 @@ public class CodeNameSplash extends JFrame {
 		JLabel lblDeveopersGabrielGebril = new JLabel("Deveopers Gabriel Gebril and Kyle Davis");
 		
 		JButton btnStartButton = new JButton("Start");
+		btnStartButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				dispose();
+				CodeNameGui Gui = new CodeNameGui();
+				Gui.setLocationRelativeTo(null);  
+				Gui.setVisible(true);
+			}
+		});
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
