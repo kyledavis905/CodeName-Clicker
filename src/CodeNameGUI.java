@@ -7,7 +7,7 @@ public class CodeNameGUI {
 	private JFrame frame;
 
 	/**
-	 * Launch the application.
+	 * Launch the applicati. 
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
