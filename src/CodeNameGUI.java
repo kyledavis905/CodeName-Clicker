@@ -52,6 +52,14 @@ public class CodeNameGui extends JFrame {
 		
 		JMenu mnFile = new JMenu("File");
 		menuBar.add(mnFile);
+		
+		JButton btnExit = new JButton("Exit");
+		btnExit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
+		mnFile.add(btnExit);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
