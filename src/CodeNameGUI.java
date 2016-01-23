@@ -18,7 +18,11 @@ import java.awt.Font;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 import java.awt.event.ActionEvent;
+import javax.swing.ScrollPaneConstants;
 
 public class CodeNameGui extends JFrame {
 
@@ -65,6 +69,7 @@ public class CodeNameGui extends JFrame {
 		setContentPane(contentPane);
 		
 		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		scrollPane.setViewportBorder(new BevelBorder(BevelBorder.RAISED, new Color(255, 140, 0), new Color(255, 215, 0), new Color(255, 165, 0), new Color(205, 133, 63)));
 		scrollPane.getViewport().setBackground(new Color (153, 101, 21));
 		
@@ -77,9 +82,23 @@ public class CodeNameGui extends JFrame {
 		lblNewLabel.setIcon(new ImageIcon("Images/Vox.png"));
 		
 		JButton btnNewButton = new JButton("");
+		
+		JLabel Aowned = new JLabel("0");
+
+		
+		ScheduledExecutorService ses = Executors.newSingleThreadScheduledExecutor();
+
+		ses.scheduleAtFixedRate(new Runnable() {
+		    @Override
+		    public void run() {
+		    	label.setText(String.valueOf(Integer.parseInt(label.getText()) +Integer.parseInt(Aowned.getText())  )) ;
+		    }
+		}, 0, 1, TimeUnit.SECONDS);
+		
 		btnNewButton.addActionListener(new ActionListener() {
-			int money = 0;
+			int money = Integer.parseInt(label.getText());
 			public void actionPerformed(ActionEvent arg0) {
+				money = Integer.parseInt(label.getText());
 				money +=  1;
 				label.setText(String.valueOf(money));
 			}
@@ -137,6 +156,63 @@ public class CodeNameGui extends JFrame {
 							.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 365, GroupLayout.PREFERRED_SIZE)))
 					.addGap(49))
 		);
+		
+		JPanel panel = new JPanel();
+		panel.setBackground(new Color(184, 134, 11));
+		scrollPane.setViewportView(panel);
+		
+
+		
+		JLabel lblUpgrade = new JLabel("");
+		lblUpgrade.setIcon(new ImageIcon("C:\\Users\\Gebri\\Documents\\GitHub\\CodeName-Clicker\\Images\\Aqueous_Accumulator.png"));
+		
+		JButton btnAccumulator = new JButton("Accumulator $15");
+		btnAccumulator.addActionListener(new ActionListener() {
+			int AccO = Integer.parseInt(Aowned.getText()); 
+			public void actionPerformed(ActionEvent arg0) {
+				if (Integer.parseInt(label.getText()) >= 15){
+					
+					label.setText(String.valueOf(Integer.parseInt(label.getText()) - 15));
+					AccO += 1;
+					Aowned.setText(String.valueOf(AccO));
+					
+				}
+				
+			}
+		});
+		
+		JLabel lblOwned = new JLabel("Owned:");
+		
+
+		GroupLayout gl_panel = new GroupLayout(panel);
+		gl_panel.setHorizontalGroup(
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel.createSequentialGroup()
+					.addComponent(lblUpgrade, GroupLayout.PREFERRED_SIZE, 95, GroupLayout.PREFERRED_SIZE)
+					.addGap(18)
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addComponent(btnAccumulator)
+						.addGroup(gl_panel.createSequentialGroup()
+							.addComponent(lblOwned)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(Aowned)))
+					.addContainerGap(516, Short.MAX_VALUE))
+		);
+		gl_panel.setVerticalGroup(
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel.createSequentialGroup()
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addComponent(lblUpgrade, GroupLayout.PREFERRED_SIZE, 56, GroupLayout.PREFERRED_SIZE)
+						.addGroup(gl_panel.createSequentialGroup()
+							.addContainerGap()
+							.addComponent(btnAccumulator)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
+								.addComponent(lblOwned)
+								.addComponent(Aowned))))
+					.addContainerGap(635, Short.MAX_VALUE))
+		);
+		panel.setLayout(gl_panel);
 		contentPane.setLayout(gl_contentPane);
 	}
 }
