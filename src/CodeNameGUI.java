@@ -85,16 +85,22 @@ public class CodeNameGui extends JFrame {
 		JLabel Aowned = new JLabel("0");
 
 		JLabel WWowned = new JLabel("0");
-		
+
+		JButton btnWindMill = new JButton("Wind Mill $115");
+
+		btnWindMill.setToolTipText("9/Wind Mill");
+
+		JLabel lblWMowned = new JLabel("Owned:");
+
+		JLabel WMowned = new JLabel("0");
+
 		ScheduledExecutorService ses = Executors.newSingleThreadScheduledExecutor();
-		
-		
 
 		ses.scheduleAtFixedRate(new Runnable() {
 			@Override
 			public void run() {
 				label.setText(String.valueOf(Integer.parseInt(label.getText()) + Integer.parseInt(Aowned.getText())
-				+ (Integer.parseInt(WWowned.getText())*3 ) ) );
+						+ (Integer.parseInt(WWowned.getText()) * 3) + (Integer.parseInt(WMowned.getText()) * 9)));
 			}
 		}, 0, 1, TimeUnit.SECONDS);
 
@@ -152,8 +158,8 @@ public class CodeNameGui extends JFrame {
 		panel.setBackground(new Color(184, 134, 11));
 		scrollPane.setViewportView(panel);
 
-		JLabel lblUpgrade = new JLabel("");
-		lblUpgrade.setIcon(new ImageIcon(
+		JLabel lblUpgrade1 = new JLabel("");
+		lblUpgrade1.setIcon(new ImageIcon(
 				"C:\\Users\\Gebri\\Documents\\GitHub\\CodeName-Clicker\\Images\\Aqueous_Accumulator.png"));
 
 		JButton btnAccumulator = new JButton("Accumulator $15");
@@ -173,12 +179,11 @@ public class CodeNameGui extends JFrame {
 			}
 		});
 
-		JLabel lblOwned = new JLabel("Owned:");
+		JLabel lblACowned = new JLabel("Owned:");
 
-		JLabel label_1 = new JLabel("");
-		label_1.setIcon(new ImageIcon("C:\\Users\\Gebri\\Documents\\GitHub\\CodeName-Clicker\\Images\\Waterwheel.png"));
-
-
+		JLabel lblUpgrade2 = new JLabel("");
+		lblUpgrade2.setIcon(
+				new ImageIcon("C:\\Users\\Gebri\\Documents\\GitHub\\CodeName-Clicker\\Images\\Waterwheel.png"));
 
 		JLabel lblWW = new JLabel("Owned:");
 
@@ -186,6 +191,7 @@ public class CodeNameGui extends JFrame {
 		btnWaterWheel.setToolTipText("3/Water Wheel");
 		btnWaterWheel.addActionListener(new ActionListener() {
 			int WWo = Integer.parseInt(WWowned.getText());
+
 			public void actionPerformed(ActionEvent arg0) {
 				if (Integer.parseInt(label.getText()) >= 40) {
 
@@ -198,18 +204,34 @@ public class CodeNameGui extends JFrame {
 			}
 		});
 
+		JLabel lblUpgrade3 = new JLabel("");
+		lblUpgrade3
+				.setIcon(new ImageIcon("C:\\Users\\Gebri\\Documents\\GitHub\\CodeName-Clicker\\Images\\WindMill.png"));
+
+		btnWindMill.addActionListener(new ActionListener() {
+			int WMo = Integer.parseInt(WMowned.getText());
+
+			public void actionPerformed(ActionEvent e) {
+				if (Integer.parseInt(label.getText()) >= 115) {
+					label.setText(String.valueOf(Integer.parseInt(label.getText()) - 115));
+					WMo += 1;
+					WMowned.setText(String.valueOf(WMo));
+				}
+			}
+		});
+
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(gl_panel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel.createSequentialGroup()
 						.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-								.addGroup(gl_panel.createSequentialGroup().addComponent(lblUpgrade,
+								.addGroup(gl_panel.createSequentialGroup().addComponent(lblUpgrade1,
 										GroupLayout.PREFERRED_SIZE, 95, GroupLayout.PREFERRED_SIZE)
 								.addGap(18)
 								.addGroup(gl_panel.createParallelGroup(Alignment.LEADING).addComponent(btnAccumulator)
-										.addGroup(gl_panel.createSequentialGroup().addComponent(lblOwned)
+										.addGroup(gl_panel.createSequentialGroup().addComponent(lblACowned)
 												.addPreferredGap(ComponentPlacement.RELATED).addComponent(Aowned))))
 						.addGroup(gl_panel.createSequentialGroup()
-								.addComponent(label_1, GroupLayout.PREFERRED_SIZE, 95, GroupLayout.PREFERRED_SIZE)
+								.addComponent(lblUpgrade2, GroupLayout.PREFERRED_SIZE, 95, GroupLayout.PREFERRED_SIZE)
 								.addGap(18)
 								.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
 										.addGroup(gl_panel.createSequentialGroup()
@@ -217,24 +239,41 @@ public class CodeNameGui extends JFrame {
 												.addComponent(lblWW, GroupLayout.PREFERRED_SIZE, 44,
 														GroupLayout.PREFERRED_SIZE)
 												.addPreferredGap(ComponentPlacement.RELATED).addComponent(WWowned))
-										.addComponent(btnWaterWheel))))
-						.addContainerGap(506, Short.MAX_VALUE)));
+										.addComponent(btnWaterWheel)))
+						.addGroup(gl_panel.createSequentialGroup()
+								.addComponent(lblUpgrade3, GroupLayout.PREFERRED_SIZE, 95, GroupLayout.PREFERRED_SIZE)
+								.addGap(18)
+								.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+										.addGroup(gl_panel.createSequentialGroup()
+												.addComponent(lblWMowned, GroupLayout.PREFERRED_SIZE, 44,
+														GroupLayout.PREFERRED_SIZE)
+												.addPreferredGap(ComponentPlacement.RELATED).addComponent(WMowned))
+										.addComponent(btnWindMill, GroupLayout.DEFAULT_SIZE, 117, Short.MAX_VALUE))))
+				.addGap(100)));
 		gl_panel.setVerticalGroup(gl_panel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel.createSequentialGroup()
 						.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-								.addComponent(lblUpgrade, GroupLayout.PREFERRED_SIZE, 56, GroupLayout.PREFERRED_SIZE)
+								.addComponent(lblUpgrade1, GroupLayout.PREFERRED_SIZE, 56, GroupLayout.PREFERRED_SIZE)
 								.addGroup(gl_panel.createSequentialGroup().addContainerGap()
 										.addComponent(btnAccumulator).addPreferredGap(ComponentPlacement.RELATED)
 										.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-												.addComponent(lblOwned).addComponent(Aowned))))
+												.addComponent(lblACowned).addComponent(Aowned))))
 				.addPreferredGap(ComponentPlacement.RELATED)
 				.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING, false)
-						.addComponent(label_1, GroupLayout.PREFERRED_SIZE, 56, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblUpgrade2, GroupLayout.PREFERRED_SIZE, 56, GroupLayout.PREFERRED_SIZE)
 						.addGroup(gl_panel.createSequentialGroup().addGap(13).addComponent(btnWaterWheel)
 								.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 								.addGroup(gl_panel.createParallelGroup(Alignment.LEADING).addComponent(lblWW)
 										.addComponent(WWowned))))
-						.addContainerGap(573, Short.MAX_VALUE)));
+				.addPreferredGap(ComponentPlacement.RELATED)
+				.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addComponent(lblUpgrade3, GroupLayout.PREFERRED_SIZE, 56,
+								GroupLayout.PREFERRED_SIZE)
+						.addGroup(gl_panel.createSequentialGroup().addGap(13).addComponent(btnWindMill)
+								.addPreferredGap(ComponentPlacement.RELATED)
+								.addGroup(gl_panel.createParallelGroup(Alignment.LEADING).addComponent(WMowned)
+										.addComponent(lblWMowned))))
+						.addContainerGap(629, Short.MAX_VALUE)));
 		panel.setLayout(gl_panel);
 		contentPane.setLayout(gl_contentPane);
 	}
