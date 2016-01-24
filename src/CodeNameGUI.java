@@ -78,7 +78,7 @@ public class CodeNameGui extends JFrame {
 		label.setFont(new Font("Tahoma", Font.PLAIN, 30));
 
 		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\Gebri\\Documents\\GitHub\\CodeName-Clicker\\Images\\Vox.png"));
+		lblNewLabel.setIcon(new ImageIcon("Images/Vox.png"));
 
 		JButton btnNewButton = new JButton("");
 		
@@ -177,8 +177,7 @@ public class CodeNameGui extends JFrame {
 		panel.setBackground(new Color(184, 134, 11));
 
 		JLabel lblUpgrade1 = new JLabel("");
-		lblUpgrade1.setIcon(new ImageIcon(
-				"C:\\Users\\Gebri\\Documents\\GitHub\\CodeName-Clicker\\Images\\Aqueous_Accumulator.png"));
+		lblUpgrade1.setIcon(new ImageIcon("Images/Aqueous_Accumulator.png"));
 
 		JButton btnAccumulator = new JButton("Accumulator $15");
 		btnAccumulator.setToolTipText("1/Accumulator");
@@ -201,7 +200,7 @@ public class CodeNameGui extends JFrame {
 
 		JLabel lblUpgrade2 = new JLabel("");
 		lblUpgrade2.setIcon(
-				new ImageIcon("C:\\Users\\Gebri\\Documents\\GitHub\\CodeName-Clicker\\Images\\Waterwheel.png"));
+				new ImageIcon("Images/Waterwheel.png"));
 
 		JLabel lblWW = new JLabel("Owned:");
 
@@ -224,7 +223,7 @@ public class CodeNameGui extends JFrame {
 
 		JLabel lblUpgrade3 = new JLabel("");
 		lblUpgrade3
-				.setIcon(new ImageIcon("C:\\Users\\Gebri\\Documents\\GitHub\\CodeName-Clicker\\Images\\WindMill.png"));
+				.setIcon(new ImageIcon("Images/WindMill.png"));
 
 		btnWindMill.addActionListener(new ActionListener() {
 			int WMo = Integer.parseInt(WMowned.getText());
@@ -240,7 +239,7 @@ public class CodeNameGui extends JFrame {
 
 		JLabel lblUpgrade4 = new JLabel("");
 		lblUpgrade4.setIcon(
-				new ImageIcon("C:\\Users\\Gebri\\Documents\\GitHub\\CodeName-Clicker\\Images\\SolarPanel.png"));
+				new ImageIcon("Images/SolarPanel.png"));
 
 		btnSolarPanel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -261,8 +260,7 @@ public class CodeNameGui extends JFrame {
 		JLabel lblSPowned = new JLabel("Owned:");
 
 		JLabel lblUpdate5 = new JLabel("");
-		lblUpdate5.setIcon(new ImageIcon(
-				"C:\\Users\\Gebri\\Documents\\GitHub\\CodeName-Clicker\\Images\\Geothermal Generator.png"));
+		lblUpdate5.setIcon(new ImageIcon("Images/Geothermal Generator.png"));
 
 		JButton btnGeothermal = new JButton("Geothermal $1035");
 		btnGeothermal.addActionListener(new ActionListener() {
@@ -282,7 +280,7 @@ public class CodeNameGui extends JFrame {
 
 		JLabel lblUpgrade5 = new JLabel("");
 		lblUpgrade5.setIcon(
-				new ImageIcon("C:\\Users\\Gebri\\Documents\\GitHub\\CodeName-Clicker\\Images\\maxresdefault.png"));
+				new ImageIcon("Images/maxresdefault.png"));
 
 		JButton btnReactor = new JButton("Reactor $3100");
 		btnReactor.addActionListener(new ActionListener() {
@@ -304,7 +302,7 @@ public class CodeNameGui extends JFrame {
 		JLabel lblNRowned = new JLabel("Owned:");
 
 		JLabel lblUpgrade6 = new JLabel("");
-		lblUpgrade6.setIcon(new ImageIcon("C:\\Users\\Gebri\\Documents\\GitHub\\CodeName-Clicker\\Images\\Fusion.png"));
+		lblUpgrade6.setIcon(new ImageIcon("Images/Fusion.png"));
 
 		JButton btnFusion = new JButton("Fusion Reactor $9300");
 		btnFusion.addActionListener(new ActionListener() {
@@ -325,7 +323,7 @@ public class CodeNameGui extends JFrame {
 		JLabel lbFRowned = new JLabel("Owned:");
 
 		JLabel lblUpgrade7 = new JLabel("");
-		lblUpgrade7.setIcon(new ImageIcon("C:\\Users\\Gebri\\Documents\\GitHub\\CodeName-Clicker\\Images\\BlackHole.png"));
+		lblUpgrade7.setIcon(new ImageIcon("Images/BlackHole.png"));
 
 		JButton btnBlackHole = new JButton("Black Hole $27900");
 		btnBlackHole.addActionListener(new ActionListener() {
@@ -348,7 +346,7 @@ public class CodeNameGui extends JFrame {
 
 		JLabel lblUpgrade8 = new JLabel("");
 		lblUpgrade8.setIcon(
-				new ImageIcon("C:\\Users\\Gebri\\Documents\\GitHub\\CodeName-Clicker\\Images\\Quantum_Generator.png"));
+				new ImageIcon("Images/Quantum_Generator.png"));
 
 		JButton btnQuantum = new JButton("Quantum Generator $83700");
 		btnQuantum.addActionListener(new ActionListener() {
