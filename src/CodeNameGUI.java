@@ -95,12 +95,19 @@ public class CodeNameGui extends JFrame {
 		JLabel WMowned = new JLabel("0");
 
 		ScheduledExecutorService ses = Executors.newSingleThreadScheduledExecutor();
+		
+		JButton btnSolarPanel = new JButton("Solar Panel $345");
+		
+		JLabel SPowned = new JLabel("0");
 
 		ses.scheduleAtFixedRate(new Runnable() {
 			@Override
 			public void run() {
 				label.setText(String.valueOf(Integer.parseInt(label.getText()) + Integer.parseInt(Aowned.getText())
-						+ (Integer.parseInt(WWowned.getText()) * 3) + (Integer.parseInt(WMowned.getText()) * 9)));
+						+ (Integer.parseInt(WWowned.getText()) * 3) 
+						+ (Integer.parseInt(WMowned.getText()) * 9)
+						+ (Integer.parseInt(SPowned.getText()) * 81)
+						));
 			}
 		}, 0, 1, TimeUnit.SECONDS);
 
@@ -219,61 +226,148 @@ public class CodeNameGui extends JFrame {
 				}
 			}
 		});
-
+		
+		JLabel label_1 = new JLabel("0");
+		
+		JLabel label_2 = new JLabel("Owned:");
+		
+		JButton button = new JButton("Wind Mill $115");
+		button.setToolTipText("9/Wind Mill");
+		
+		JLabel Upgrade4 = new JLabel("");
+		Upgrade4.setIcon(new ImageIcon("C:\\Users\\Gebri\\Documents\\GitHub\\CodeName-Clicker\\Images\\SolarPanel.png"));
+		
+		
+		btnSolarPanel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (Integer.parseInt(label.getText()) >= 115) {
+					int SPo = Integer.parseInt(SPowned.getText());
+				
+					label.setText(String.valueOf(Integer.parseInt(label.getText()) - 345));
+					SPo += 1;
+					SPowned.setText(String.valueOf(SPo));
+				
+				}
+				
+			}
+		});
+		
+		btnSolarPanel.setToolTipText("81/Solar Panel");
+		
+		JLabel lblSPowned = new JLabel("Owned:");
+				
 		GroupLayout gl_panel = new GroupLayout(panel);
-		gl_panel.setHorizontalGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+		gl_panel.setHorizontalGroup(
+			gl_panel.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_panel.createSequentialGroup()
-						.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-								.addGroup(gl_panel.createSequentialGroup().addComponent(lblUpgrade1,
-										GroupLayout.PREFERRED_SIZE, 95, GroupLayout.PREFERRED_SIZE)
-								.addGap(18)
-								.addGroup(gl_panel.createParallelGroup(Alignment.LEADING).addComponent(btnAccumulator)
-										.addGroup(gl_panel.createSequentialGroup().addComponent(lblACowned)
-												.addPreferredGap(ComponentPlacement.RELATED).addComponent(Aowned))))
+					.addContainerGap(264, Short.MAX_VALUE)
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addComponent(button, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
 						.addGroup(gl_panel.createSequentialGroup()
-								.addComponent(lblUpgrade2, GroupLayout.PREFERRED_SIZE, 95, GroupLayout.PREFERRED_SIZE)
-								.addGap(18)
-								.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-										.addGroup(gl_panel.createSequentialGroup()
-												.addPreferredGap(ComponentPlacement.RELATED)
-												.addComponent(lblWW, GroupLayout.PREFERRED_SIZE, 44,
-														GroupLayout.PREFERRED_SIZE)
-												.addPreferredGap(ComponentPlacement.RELATED).addComponent(WWowned))
-										.addComponent(btnWaterWheel)))
+							.addComponent(label_2, GroupLayout.PREFERRED_SIZE, 44, GroupLayout.PREFERRED_SIZE)
+							.addGap(6)
+							.addComponent(label_1, GroupLayout.PREFERRED_SIZE, 6, GroupLayout.PREFERRED_SIZE)))
+					.addGap(49))
+				.addGroup(gl_panel.createSequentialGroup()
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_panel.createSequentialGroup()
+							.addComponent(lblUpgrade1, GroupLayout.PREFERRED_SIZE, 95, GroupLayout.PREFERRED_SIZE)
+							.addGap(18)
+							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+								.addComponent(btnAccumulator)
+								.addGroup(gl_panel.createSequentialGroup()
+									.addComponent(lblACowned)
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(Aowned))))
+						.addGroup(gl_panel.createSequentialGroup()
+							.addComponent(lblUpgrade2, GroupLayout.PREFERRED_SIZE, 95, GroupLayout.PREFERRED_SIZE)
+							.addGap(18)
+							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+								.addGroup(gl_panel.createSequentialGroup()
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(lblWW, GroupLayout.PREFERRED_SIZE, 44, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(WWowned))
+								.addComponent(btnWaterWheel)))
+						.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
+							.addGroup(gl_panel.createSequentialGroup()
 								.addComponent(lblUpgrade3, GroupLayout.PREFERRED_SIZE, 95, GroupLayout.PREFERRED_SIZE)
 								.addGap(18)
 								.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-										.addGroup(gl_panel.createSequentialGroup()
-												.addComponent(lblWMowned, GroupLayout.PREFERRED_SIZE, 44,
-														GroupLayout.PREFERRED_SIZE)
-												.addPreferredGap(ComponentPlacement.RELATED).addComponent(WMowned))
-										.addComponent(btnWindMill, GroupLayout.DEFAULT_SIZE, 117, Short.MAX_VALUE))))
-				.addGap(100)));
-		gl_panel.setVerticalGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+									.addGroup(gl_panel.createSequentialGroup()
+										.addComponent(lblWMowned, GroupLayout.PREFERRED_SIZE, 44, GroupLayout.PREFERRED_SIZE)
+										.addPreferredGap(ComponentPlacement.RELATED)
+										.addComponent(WMowned))
+									.addComponent(btnWindMill, GroupLayout.DEFAULT_SIZE, 117, Short.MAX_VALUE)))
+							.addGroup(Alignment.LEADING, gl_panel.createSequentialGroup()
+								.addComponent(Upgrade4, GroupLayout.PREFERRED_SIZE, 95, GroupLayout.PREFERRED_SIZE)
+								.addGap(18)
+								.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+									.addGroup(gl_panel.createSequentialGroup()
+										.addComponent(lblSPowned, GroupLayout.PREFERRED_SIZE, 44, GroupLayout.PREFERRED_SIZE)
+										.addPreferredGap(ComponentPlacement.RELATED)
+										.addComponent(SPowned, GroupLayout.PREFERRED_SIZE, 15, GroupLayout.PREFERRED_SIZE)
+										.addPreferredGap(ComponentPlacement.RELATED, 52, Short.MAX_VALUE))
+									.addComponent(btnSolarPanel, GroupLayout.DEFAULT_SIZE, 117, Short.MAX_VALUE)))))
+					.addGap(200))
+		);
+		gl_panel.setVerticalGroup(
+			gl_panel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel.createSequentialGroup()
-						.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_panel.createSequentialGroup()
+							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
 								.addComponent(lblUpgrade1, GroupLayout.PREFERRED_SIZE, 56, GroupLayout.PREFERRED_SIZE)
-								.addGroup(gl_panel.createSequentialGroup().addContainerGap()
-										.addComponent(btnAccumulator).addPreferredGap(ComponentPlacement.RELATED)
-										.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-												.addComponent(lblACowned).addComponent(Aowned))))
-				.addPreferredGap(ComponentPlacement.RELATED)
-				.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING, false)
-						.addComponent(lblUpgrade2, GroupLayout.PREFERRED_SIZE, 56, GroupLayout.PREFERRED_SIZE)
-						.addGroup(gl_panel.createSequentialGroup().addGap(13).addComponent(btnWaterWheel)
-								.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addGroup(gl_panel.createParallelGroup(Alignment.LEADING).addComponent(lblWW)
+								.addGroup(gl_panel.createSequentialGroup()
+									.addContainerGap()
+									.addComponent(btnAccumulator)
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
+										.addComponent(lblACowned)
+										.addComponent(Aowned))))
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING, false)
+								.addComponent(lblUpgrade2, GroupLayout.PREFERRED_SIZE, 56, GroupLayout.PREFERRED_SIZE)
+								.addGroup(gl_panel.createSequentialGroup()
+									.addGap(13)
+									.addComponent(btnWaterWheel)
+									.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+									.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+										.addComponent(lblWW)
 										.addComponent(WWowned))))
-				.addPreferredGap(ComponentPlacement.RELATED)
-				.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-						.addComponent(lblUpgrade3, GroupLayout.PREFERRED_SIZE, 56,
-								GroupLayout.PREFERRED_SIZE)
-						.addGroup(gl_panel.createSequentialGroup().addGap(13).addComponent(btnWindMill)
-								.addPreferredGap(ComponentPlacement.RELATED)
-								.addGroup(gl_panel.createParallelGroup(Alignment.LEADING).addComponent(WMowned)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+								.addComponent(lblUpgrade3, GroupLayout.PREFERRED_SIZE, 56, GroupLayout.PREFERRED_SIZE)
+								.addGroup(gl_panel.createSequentialGroup()
+									.addGap(8)
+									.addComponent(btnWindMill)
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+										.addComponent(WMowned)
 										.addComponent(lblWMowned))))
-						.addContainerGap(629, Short.MAX_VALUE)));
+							.addGap(209)
+							.addComponent(button)
+							.addGap(6)
+							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+								.addComponent(label_2)
+								.addComponent(label_1)))
+						.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+							.addGroup(Alignment.TRAILING, gl_panel.createSequentialGroup()
+								.addContainerGap()
+								.addComponent(btnSolarPanel)
+								.addPreferredGap(ComponentPlacement.RELATED)
+								.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+									.addGroup(Alignment.TRAILING, gl_panel.createSequentialGroup()
+										.addPreferredGap(ComponentPlacement.RELATED)
+										.addComponent(SPowned))
+									.addGroup(gl_panel.createSequentialGroup()
+										.addPreferredGap(ComponentPlacement.RELATED)
+										.addComponent(lblSPowned))))
+							.addGroup(gl_panel.createSequentialGroup()
+								.addGap(186)
+								.addComponent(Upgrade4, GroupLayout.PREFERRED_SIZE, 56, GroupLayout.PREFERRED_SIZE))))
+					.addContainerGap(536, Short.MAX_VALUE))
+		);
 		panel.setLayout(gl_panel);
 		contentPane.setLayout(gl_contentPane);
 	}
