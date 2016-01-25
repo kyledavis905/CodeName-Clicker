@@ -69,7 +69,7 @@ public class CodeNameSplash extends JFrame {
 			}
 		});
 		
-		ImageIcon CursorIcon = new ImageIcon("Images/stealth.png");
+		ImageIcon CursorIcon = new ImageIcon(CodeNameSplash.class.getResource("/stealth.png"));
 		JLabel lblleftimage = new JLabel(CursorIcon);
 		
 		

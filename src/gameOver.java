@@ -40,7 +40,7 @@ public class gameOver extends JFrame {
 		setContentPane(contentPane);
 		
 		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon("C:\\Users\\Gebri\\Documents\\GitHub\\CodeName-Clicker\\Images\\Win.gif"));
+		label.setIcon(new ImageIcon(CodeNameGui.class.getResource("/Win.gif")));
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)

@@ -18,6 +18,11 @@ import java.awt.Font;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -44,6 +49,25 @@ public class CodeNameGui extends JFrame {
 		});
 	}
 
+	public String[] OpenFile() throws IOException {
+		
+		FileReader fr = new FileReader ("Save.txt");
+		BufferedReader textReader = new BufferedReader(fr);
+		
+		int numberOfLines = 10;
+		String[] textData = new String[numberOfLines];
+		
+		int i;
+		
+		for (i=0; i < numberOfLines; i++){
+			textData[i] = textReader.readLine();
+		}
+		
+		textReader.close();
+		return textData;
+		
+	}
+	
 	/**
 	 * Create the frame.
 	 */
@@ -78,7 +102,7 @@ public class CodeNameGui extends JFrame {
 		label.setFont(new Font("Tahoma", Font.PLAIN, 30));
 
 		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon("Images/Vox.png"));
+		lblNewLabel.setIcon(new ImageIcon(CodeNameGui.class.getResource("/Vox.png")));
 
 		JButton btnNewButton = new JButton("");
 		
@@ -123,7 +147,7 @@ public class CodeNameGui extends JFrame {
 			}
 		});
 
-		btnNewButton.setIcon(new ImageIcon("Images/Glowcube.jpg"));
+		btnNewButton.setIcon(new ImageIcon(CodeNameGui.class.getResource("/Glowcube.jpg")));
 
 		JButton btnTestButton = new JButton("Cheater button");
 		btnTestButton.addActionListener(new ActionListener() {
@@ -131,36 +155,108 @@ public class CodeNameGui extends JFrame {
 				label.setText("100000000");
 			}
 		});
+		
+		JButton btnSave = new JButton("Save");
+		btnSave.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				PrintWriter writer;
+				try {
+					writer = new PrintWriter("Save.txt");
+					writer.println(label.getText());
+					writer.println(Aowned.getText());
+					writer.println(WWowned.getText());
+					writer.println(WMowned.getText());
+					writer.println(SPowned.getText());
+					writer.println(GTowned.getText());
+					writer.println(NRowned.getText());
+					writer.println(FRowned.getText());
+					writer.println(BHowned.getText());
+					writer.println(QGowned.getText());
+					writer.close();
+				} catch (FileNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+			}
+		});
+		
+
+		
+		JButton btnLoad = new JButton("Load");
+		btnLoad.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				try {
+					String [] load = OpenFile();
+					
+					label.setText(load[0]);
+					Aowned.setText(load[1]);
+					WWowned.setText(load[2]);
+					WMowned.setText(load[3]);
+					SPowned.setText(load[4]);
+					GTowned.setText(load[5]);
+					NRowned.setText(load[6]);
+					FRowned.setText(load[7]);
+					BHowned.setText(load[8]);
+					QGowned.setText(load[9]);
+					
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+								
+			}
+		});
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
-		gl_contentPane.setHorizontalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(gl_contentPane
-				.createSequentialGroup()
-				.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(gl_contentPane
-						.createSequentialGroup().addContainerGap()
-						.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 353, GroupLayout.PREFERRED_SIZE)
-						.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-								.addGroup(gl_contentPane.createSequentialGroup().addGap(63).addComponent(btnNewButton,
-										GroupLayout.PREFERRED_SIZE, 214, GroupLayout.PREFERRED_SIZE))
-								.addGroup(gl_contentPane.createSequentialGroup().addGap(113)
-										.addComponent(btnTestButton))))
-						.addGroup(gl_contentPane.createSequentialGroup().addGap(23).addComponent(lblNewLabel).addGap(18)
-								.addComponent(label)))
-				.addContainerGap(438, Short.MAX_VALUE)));
-		gl_contentPane.setVerticalGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-				.addGroup(Alignment.LEADING, gl_contentPane.createSequentialGroup()
-						.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-								.addGroup(Alignment.LEADING, gl_contentPane.createSequentialGroup().addGap(123)
-										.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 207,
-												GroupLayout.PREFERRED_SIZE)
-										.addGap(99).addComponent(btnTestButton))
-						.addGroup(Alignment.LEADING,
-								gl_contentPane.createSequentialGroup()
-										.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-												.addComponent(lblNewLabel)
-												.addGroup(gl_contentPane.createSequentialGroup().addGap(31)
-														.addComponent(label)))
-										.addGap(18).addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 365,
-												GroupLayout.PREFERRED_SIZE)))
-						.addContainerGap(539, Short.MAX_VALUE)));
+		gl_contentPane.setHorizontalGroup(
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addContainerGap()
+							.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 353, GroupLayout.PREFERRED_SIZE)
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+								.addGroup(gl_contentPane.createSequentialGroup()
+									.addGap(113)
+									.addComponent(btnTestButton))
+								.addGroup(gl_contentPane.createSequentialGroup()
+									.addGap(63)
+									.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 214, GroupLayout.PREFERRED_SIZE))))
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(23)
+							.addComponent(lblNewLabel)
+							.addGap(18)
+							.addComponent(label)
+							.addPreferredGap(ComponentPlacement.RELATED, 527, Short.MAX_VALUE)
+							.addComponent(btnSave)
+							.addGap(18)
+							.addComponent(btnLoad)))
+					.addContainerGap())
+		);
+		gl_contentPane.setVerticalGroup(
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(123)
+							.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 207, GroupLayout.PREFERRED_SIZE)
+							.addGap(99)
+							.addComponent(btnTestButton))
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+								.addComponent(lblNewLabel)
+								.addGroup(gl_contentPane.createSequentialGroup()
+									.addGap(31)
+									.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+										.addComponent(label)
+										.addComponent(btnLoad)
+										.addComponent(btnSave))))
+							.addGap(18)
+							.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 365, GroupLayout.PREFERRED_SIZE)))
+					.addContainerGap(128, Short.MAX_VALUE))
+		);
 
 		JButton btnWindMill = new JButton("Wind Mill $115");
 
@@ -177,7 +273,7 @@ public class CodeNameGui extends JFrame {
 		panel.setBackground(new Color(184, 134, 11));
 
 		JLabel lblUpgrade1 = new JLabel("");
-		lblUpgrade1.setIcon(new ImageIcon("Images/Aqueous_Accumulator.png"));
+		lblUpgrade1.setIcon(new ImageIcon(CodeNameGui.class.getResource("/Aqueous_Accumulator.png")));
 
 		JButton btnAccumulator = new JButton("Accumulator $15");
 		btnAccumulator.setToolTipText("1/Accumulator");
@@ -200,7 +296,7 @@ public class CodeNameGui extends JFrame {
 
 		JLabel lblUpgrade2 = new JLabel("");
 		lblUpgrade2.setIcon(
-				new ImageIcon("Images/Waterwheel.png"));
+				new ImageIcon(CodeNameGui.class.getResource("/Waterwheel.png")));
 
 		JLabel lblWW = new JLabel("Owned:");
 
@@ -223,7 +319,7 @@ public class CodeNameGui extends JFrame {
 
 		JLabel lblUpgrade3 = new JLabel("");
 		lblUpgrade3
-				.setIcon(new ImageIcon("Images/WindMill.png"));
+				.setIcon(new ImageIcon(CodeNameGui.class.getResource("/WindMill.png")));
 
 		btnWindMill.addActionListener(new ActionListener() {
 			int WMo = Integer.parseInt(WMowned.getText());
@@ -239,7 +335,7 @@ public class CodeNameGui extends JFrame {
 
 		JLabel lblUpgrade4 = new JLabel("");
 		lblUpgrade4.setIcon(
-				new ImageIcon("Images/SolarPanel.png"));
+				new ImageIcon(CodeNameGui.class.getResource("/SolarPanel.png")));
 
 		btnSolarPanel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -260,7 +356,7 @@ public class CodeNameGui extends JFrame {
 		JLabel lblSPowned = new JLabel("Owned:");
 
 		JLabel lblUpdate5 = new JLabel("");
-		lblUpdate5.setIcon(new ImageIcon("Images/Geothermal Generator.png"));
+		lblUpdate5.setIcon(new ImageIcon(CodeNameGui.class.getResource("/Geothermal Generator.png")));
 
 		JButton btnGeothermal = new JButton("Geothermal $1035");
 		btnGeothermal.addActionListener(new ActionListener() {
@@ -280,7 +376,7 @@ public class CodeNameGui extends JFrame {
 
 		JLabel lblUpgrade5 = new JLabel("");
 		lblUpgrade5.setIcon(
-				new ImageIcon("Images/maxresdefault.png"));
+				new ImageIcon(CodeNameGui.class.getResource("/maxresdefault.png")));
 
 		JButton btnReactor = new JButton("Reactor $3100");
 		btnReactor.addActionListener(new ActionListener() {
@@ -302,7 +398,7 @@ public class CodeNameGui extends JFrame {
 		JLabel lblNRowned = new JLabel("Owned:");
 
 		JLabel lblUpgrade6 = new JLabel("");
-		lblUpgrade6.setIcon(new ImageIcon("Images/Fusion.png"));
+		lblUpgrade6.setIcon(new ImageIcon(CodeNameGui.class.getResource("/Fusion.png")));
 
 		JButton btnFusion = new JButton("Fusion Reactor $9300");
 		btnFusion.addActionListener(new ActionListener() {
@@ -323,7 +419,7 @@ public class CodeNameGui extends JFrame {
 		JLabel lbFRowned = new JLabel("Owned:");
 
 		JLabel lblUpgrade7 = new JLabel("");
-		lblUpgrade7.setIcon(new ImageIcon("Images/BlackHole.png"));
+		lblUpgrade7.setIcon(new ImageIcon(CodeNameGui.class.getResource("/BlackHole.png")));
 
 		JButton btnBlackHole = new JButton("Black Hole $27900");
 		btnBlackHole.addActionListener(new ActionListener() {
@@ -346,7 +442,7 @@ public class CodeNameGui extends JFrame {
 
 		JLabel lblUpgrade8 = new JLabel("");
 		lblUpgrade8.setIcon(
-				new ImageIcon("Images/Quantum_Generator.png"));
+				new ImageIcon(CodeNameGui.class.getResource("/Quantum_Generator.png")));
 
 		JButton btnQuantum = new JButton("Quantum Generator $83700");
 		btnQuantum.addActionListener(new ActionListener() {
